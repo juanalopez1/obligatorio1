@@ -23,21 +23,35 @@ public class Preparado {
     public boolean preparadoViable (Suero suero, Lista<Farmaco> farmacos) {
         
         for (int i = 0; i < farmacos.getLargo(); i++) {
-            if (farmacos.buscar(i).getDato() != null && listaBlanca.buscar(farmacos.buscar(i).getEtiqueta()) != null){
-                return true;
-            }
             
-            if (farmacos.buscar(i).getDato() != null && listaBlanca.buscar(farmacos.buscar(i).getEtiqueta()) != null){
-                return true;
+            /* en caso de que esta condicion retorne null, significa que este
+             * farmaco NO esta en la lista blanca, por lo que no es viable...
+            */
+            if (farmacos.buscar(i).getDato() == null){
+                return false;
+            } else {
+                // si no esta adentro de la lista blanca, entonces no es viable...
+                if (listaBlanca.buscar(farmacos.buscar(i).getEtiqueta()) == null){
+                    return false;
+                }
+
+                /* aca validamos que el farmaco actual este dentro de la lista negra...
+                 * si no esta, significa que cumple con lo siguiente:
+                 * Esta dentro de la lista blanca
+                 * NO esta dentro de la negra
+                */
+                if (listaNegra.buscar(farmacos.buscar(i).getEtiqueta()) != null){
+                    
+                    int idSueroActual = (int) listaNegra.buscar(farmacos.buscar(i).getEtiqueta()).getDato();
+                    int idFarmacoActual = (int) listaNegra.buscar(farmacos.buscar(i).getEtiqueta()).getEtiqueta();
+                    
+                    // validamos si el suero y farmaco actuales estan dentro de la negra, si lo estan, retornamos FALSE
+                    if (suero.getId() == idSueroActual && (int) farmacos.buscar(i).getEtiqueta() == idFarmacoActual) {
+                        return false;
+                    }
+                }
             }
         }
-        return false;
-        
-        
-        
-        
-//        if (listaBlanca.contains(farmaco.getId()))
-//        if idfarmaaco in listablanca return true
-//        else if idsuero and id farmaco in listanegra return false
+        return true;
     }
 }
