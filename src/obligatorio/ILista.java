@@ -1,4 +1,4 @@
-package PARCIAL1;
+package obligatorio;
 
 public interface ILista<E> {
 
@@ -45,7 +45,6 @@ public interface ILista<E> {
      */
     public INodo<E> getPrimero();
     
-    public boolean enlazaEnEquipos(Lista<Equipo> listaEquipos);    
     
 
 }

@@ -1,4 +1,4 @@
-package PARCIAL1;
+package obligatorio;
 
 public interface INodo<E> {
 

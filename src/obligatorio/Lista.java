@@ -1,8 +1,9 @@
-package PARCIAL1;
+package obligatorio;
 
 public class Lista<E> implements ILista<E> {
 
     private INodo<E> primero;
+    private int Largo;
 
     public Lista() {
         primero = null;
@@ -11,7 +12,14 @@ public class Lista<E> implements ILista<E> {
     public Lista(INodo<E> unNodo) {
         this.primero = unNodo;
     }
- 
+
+    public int getLargo() {
+        return Largo;
+    }
+
+    public void setLargo(int Largo) {
+        this.Largo = Largo;
+    }
     
     public String imprimir() {
         String aux = "";
@@ -44,6 +52,7 @@ public class Lista<E> implements ILista<E> {
                 aux = aux.getSiguiente();
             }
             aux.setSiguiente(nodo);
+            Largo++;
         }
     }
 
@@ -63,29 +72,6 @@ public class Lista<E> implements ILista<E> {
         }
         return null;
     }
-
-    @Override
-    public boolean enlazaEnEquipos(Lista<Equipo> listaEquipos) {
-        Alumno alumnoAux;
-        Equipo equipoAux;
-        INodo nodoAux;
-        if (!esVacia()) {
-            INodo temp = primero;
-            while (temp != null) {
-                alumnoAux = (Alumno) temp.getDato();
-                System.out.print(alumnoAux.getNombre());
-                nodoAux = listaEquipos.buscar(alumnoAux.getEquipo());
-                equipoAux=(Equipo) nodoAux.getDato();
-                INodo nodo1 = new Nodo(alumnoAux, alumnoAux.getEquipo());
-                equipoAux.getListaAlumnos().insertar(nodo1);
-                temp = temp.getSiguiente();
-            }
-             return true;
-        }else {return false;}
-       
-    }
-                
-        
 
     @Override
     public void insertarOrdenado(INodo<E> nodo) {
