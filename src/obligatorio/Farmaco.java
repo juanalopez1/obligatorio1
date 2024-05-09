@@ -23,7 +23,11 @@ public class Farmaco {
         return this.Id;
     }
 
-    public String getDescrpcion() {
+    public String getDescripcion() {
         return this.Descripcion;
+    }
+    
+    public String imprimir() {
+        return ("Identificador farmaco: " + Id + " Descripcion: "+ getDescripcion());
     }
 }

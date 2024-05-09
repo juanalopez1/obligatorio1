@@ -28,7 +28,8 @@ public interface ILista<E> {
      * Metodo encargado de imprimir en consola las claves de los nodos
      * contenidos en la lista.
      */
-    public String imprimir();
+    
+    public String imprimirLista();
 
     
     /**

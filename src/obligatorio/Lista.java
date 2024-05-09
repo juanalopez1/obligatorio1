@@ -17,23 +17,24 @@ public class Lista<E> implements ILista<E> {
         return Largo;
     }
 
-    public void setLargo(int Largo) {
+    public void setLargo(Integer Largo) {
         this.Largo = Largo;
     }
-    
-    public String imprimir() {
+
+    public String imprimirLista() {
         String aux = "";
-        if (!esVacia()) {
-            INodo<E> temp = primero;
-            while (temp != null) {
-                temp.imprimirEtiqueta();
-                aux += temp.getEtiqueta();
-                temp = temp.getSiguiente();
+        if (!this.esVacia()) {
+            INodo actual = this.primero; // Puntero para recorrer la lista
+            while (actual != null) {
+                int id = (int) actual.getEtiqueta();
+                Farmaco farmaco = (Farmaco) actual.getDato();
+                aux += "\nIdentificador: " + id + " Descripcion: " + farmaco.getDescripcion();
+                actual = actual.getSiguiente(); // Avanzar al siguiente nodo
             }
-        }
+        }    
         return aux;
     }
-   
+
     public boolean esVacia() {
         return primero == null;
     }
@@ -44,39 +45,57 @@ public class Lista<E> implements ILista<E> {
 
     @Override
     public void insertar(INodo<E> nodo) {
-        if (esVacia()){
+        if (esVacia()) {
             this.primero = nodo;
+            Largo++;
         } else {
             INodo<E> aux = getPrimero();
-            while (aux.getSiguiente() != null){
+            while (aux.getSiguiente() != null) {
                 aux = aux.getSiguiente();
             }
-            aux.setSiguiente(nodo);
             Largo++;
+            aux.setSiguiente(nodo);
+
         }
     }
 
     @Override
     public INodo buscar(Comparable clave) {
-        if (esVacia()){
+        if (esVacia()) {
             return null;
-        } else{
+        } else {
             INodo<E> aux = getPrimero();
-            while (aux!=null){
-                if(aux.getEtiqueta().equals(clave)){
+            while (aux != null) {
+                if (aux.getEtiqueta().equals(clave)) {
                     return aux;
                 }
                 aux = aux.getSiguiente();
-                
+
             }
         }
         return null;
     }
+    
+    public Boolean buscarBool(Comparable clave) {
+        if (esVacia()) {
+            return false;
+        } else {
+            INodo<E> aux = getPrimero();
+            while (aux != null) {
+                if (aux.getEtiqueta().equals(clave)) {
+                    return true;
+                }
+                aux = aux.getSiguiente();
 
-    @Override
-    public void insertarOrdenado(INodo<E> nodo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        }
+        return true;
     }
     
+    @Override
+    public void insertarOrdenado(INodo<E> nodo) {
+        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
+                                                                       // Tools | Templates.
+    }
 
 }

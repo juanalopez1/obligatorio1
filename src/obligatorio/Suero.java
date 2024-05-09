@@ -23,7 +23,13 @@ public class Suero {
         return this.Id;
     }
 
-    public String getDescrpcion() {
+    public String getDescripcion() {
         return this.Descripcion;
     }
+    
+    public String imprimir() {
+        return ("\nIdentificador suero: " + Id + " Descripcion: "+ getDescripcion());
+    }
+    
+    
 }
