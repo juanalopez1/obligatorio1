@@ -26,16 +26,6 @@ public class Obligatorio {
         String[] archivoSueros = ManejadorArchivosGenerico.leerArchivo("src\\Sueros.txt");
         String[] archivoFarmacos = ManejadorArchivosGenerico.leerArchivo("src\\farmacos.txt");
         
-        for (int i = 0; i < archivoListaBlanca.length; i++) {
-            listaBlanca.insertar(new Nodo(archivoListaBlanca[i],archivoListaBlanca[i]));  
-            System.out.println(archivoListaBlanca[i]);
-        }
-        
-        for (int i = 0; i < archivoListaNegra.length; i++) {
-            String[] parts = archivoListaNegra[i].split(",");
-            listaNegra.insertar(new Nodo(parts[1].trim(),parts[0].trim()));  
-        }
-        
         for (int i = 0; i < archivoSueros.length; i++) {
             String[] parts = archivoSueros[i].split(",");
             int id = Integer.parseInt(parts[0]);
@@ -46,6 +36,29 @@ public class Obligatorio {
             String[] parts = archivoFarmacos[i].split(",");
             int id = Integer.parseInt(parts[0]);
             listaFarmacos.insertar(new Nodo(new Farmaco (id, parts[1].trim()), id)); 
+        }
+        
+        for (int i = 0; i < archivoListaBlanca.length; i++) {
+            String[] parts = archivoListaBlanca[i].split(",");
+            int idFarmaco = Integer.parseInt(parts[0]);
+            if (listaFarmacos.buscar(idFarmaco) != null){
+                listaBlanca.insertar(new Nodo(archivoListaBlanca[i],archivoListaBlanca[i])); 
+            }
+            else{
+                System.out.println("No existe el farmaco " + archivoListaBlanca[i]);
+            }
+        }
+        
+        for (int i = 0; i < archivoListaNegra.length; i++) {
+            String[] parts = archivoListaNegra[i].split(",");
+            int idSuero = Integer.parseInt(parts[0]);
+            int idFarmaco = Integer.parseInt(parts[1]);
+            if (listaSueros.buscar(idSuero) != null && listaFarmacos.buscar(idFarmaco) != null ){
+                listaNegra.insertar(new Nodo(parts[1].trim(),parts[0].trim())); 
+            }
+            else{
+                System.out.println("No existe suero " + parts[0].trim()+ " y/o farmaco " + parts[1].trim());
+            }
         }
         
         Preparado preparado = new Preparado(listaBlanca, listaNegra);
@@ -64,12 +77,12 @@ public class Obligatorio {
 //        Preparado prueba = new Preparado(listaBlanca, listaNegra);
           System.out.println(miSuero.imprimir());   // se imprime el suero a usar
           System.out.println(farmacosElegidos.imprimirLista()); // se imprime la lista de farmacos a usar
-          if (preparado.preparadoViable(miSuero, farmacosElegidos)){    // se imprime si es viable o no
-              System.out.println("Preparado viable");
-          }
-          else{
-              System.out.println("Preparado no viable");
-          }
+//          if (preparado.preparadoViable(miSuero, farmacosElegidos)){    // se imprime si es viable o no
+//              System.out.println("Preparado viable");
+//          }
+//          else{
+//              System.out.println("Preparado no viable");
+//          }
 //        boolean esViable = prueba.preparadoViable(algunSuero, farmacos);
 //        System.out.println("Es viable el suerinho de pruebinha? " + esViable);
     }
