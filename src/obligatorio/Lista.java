@@ -66,6 +66,7 @@ public class Lista<E> implements ILista<E> {
         } else {
             INodo<E> aux = getPrimero();
             while (aux != null) {
+                Comparable laEtiueta = aux.getEtiqueta();
                 if (aux.getEtiqueta().equals(clave)) {
                     return aux;
                 }

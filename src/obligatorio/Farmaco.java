@@ -9,17 +9,17 @@ package obligatorio;
  * @author juana
  */
 public class Farmaco {
-    private int Id;
+    private String Id;
     private String Descripcion;
 
-    public Farmaco(int id, String descripcion) {
+    public Farmaco(String id, String descripcion) {
         
         this.Id = id;
         this.Descripcion = descripcion;
     }
 
     
-    public int getId() {
+    public String getId() {
         return this.Id;
     }
 

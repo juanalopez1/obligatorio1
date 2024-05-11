@@ -9,17 +9,17 @@ package obligatorio;
  * @author juana
  */
 public class Suero {
-    private int Id;
+    private String Id;
     private String Descripcion;
 
-    public Suero(int id, String descripcion) {
+    public Suero(String id, String descripcion) {
         
         this.Id = id;
         this.Descripcion = descripcion;
     }
 
     
-    public int getId() {
+    public String getId() {
         return this.Id;
     }
 
