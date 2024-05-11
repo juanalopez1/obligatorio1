@@ -51,7 +51,6 @@ public class ManejadorArchivosGenerico {
             System.out.println("Error al leer el archivo "+nombreCompletoArchivo);
             e.printStackTrace();
         }
-        System.out.println("Archivo leido satisfactoriamente");
 
         return listaLineasArchivo.toArray (new String [0]);
     }

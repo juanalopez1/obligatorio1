@@ -28,6 +28,7 @@ public class Preparado {
             quieroVerLaEtiqueta = aux.getEtiqueta();
             // si no esta adentro de la lista blanca, entonces no es viable...
             if (listaBlanca.buscar(aux.getEtiqueta()) == null){
+                System.out.println("Farmaco no en lista blanca");
                 return false;
             }
 
@@ -40,11 +41,10 @@ public class Preparado {
 
                 String idSueroActual = (String) listaNegra.buscar(aux.getEtiqueta()).getDato();
                 String idFarmacoActual = (String) listaNegra.buscar(aux.getEtiqueta()).getEtiqueta();
-                System.out.println("suero.getId() = " + suero.getId());
-                System.out.println("String.valueOf(aux.getEtiqueta()) = " + String.valueOf(aux.getEtiqueta()));
 
                 // validamos si el suero y farmaco actuales estan dentro de la negra, si lo estan, retornamos FALSE
                 if (suero.getId().equalsIgnoreCase(idSueroActual) && String.valueOf(aux.getEtiqueta()).equalsIgnoreCase(idFarmacoActual)) {
+                    System.out.println("Combinacion en lista negra");
                     return false;
                 }
             }

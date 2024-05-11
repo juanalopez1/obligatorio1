@@ -26,9 +26,11 @@ public class Lista<E> implements ILista<E> {
         if (!this.esVacia()) {
             INodo actual = this.primero; // Puntero para recorrer la lista
             while (actual != null) {
-                int id = (int) actual.getEtiqueta();
                 Farmaco farmaco = (Farmaco) actual.getDato();
-                aux += "\nIdentificador: " + id + " Descripcion: " + farmaco.getDescripcion();
+                String id = farmaco.getId();
+                String descripcion = farmaco.getDescripcion();
+                
+                aux += "\nIdentificador: " + id + " Descripcion: " + descripcion;
                 actual = actual.getSiguiente(); // Avanzar al siguiente nodo
             }
         }    
